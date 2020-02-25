@@ -1,9 +1,17 @@
 package controller;
 
-import java.util.Scanner;
-import java.util.Stack;
+import java.io.FileReader;
 
-import model.data_structures.Queue;
+import java.util.Scanner;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
 import model.logic.Comparendos;
 import model.logic.Modelo;
 import view.View;
@@ -13,8 +21,7 @@ public class Controller {
 	/*
 	 * 
 	 */
-	private Queue<Comparendos> listaComparendosQueue;
-	private Stack<Comparendos> listaComparendosStack;
+	private DobleListaEncadenada<Comparendos> listaComparendos;
 
 	/* Instancia del Modelo*/
 	private Modelo modelo;
@@ -31,13 +38,11 @@ public class Controller {
 	 */
 	public Controller()
 	{
-		listaComparendosQueue= new Queue<Comparendos>();
-		listaComparendosStack= new Stack<Comparendos>();
-		
+		listaComparendos= new DobleListaEncadenada<Comparendos>();
 		view = new View();
 		modelo = new Modelo();
 	}
-	@SuppressWarnings("unused")
+
 	public void run() 
 	{
 		Scanner lector = new Scanner(System.in);
@@ -46,32 +51,24 @@ public class Controller {
 		Object datoS = null;
 		String respuesta = "";
 
+
 		while( !fin ){
 			view.printMenu();
 
 			int option = lector.nextInt();
 			switch(option){
-
 			case 1:
 				modelo = new Modelo(); 
-				modelo.loadComparendosQueue(ruta);
+				modelo.loadComparendos(ruta);
 				System.out.println(modelo);
 				System.out.println("Arreglo Dinamico creado");
-				System.out.println("Numero actual de elementos " + modelo.darTamanoQueue() + "\n---------");						
+				System.out.println("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
 				break;
 
 			case 2:
-				modelo = new Modelo(); 
-				modelo.loadComparendosStack(ruta);
-				System.out.println(modelo);
-				System.out.println("Arreglo Dinamico creado");
-				System.out.println("Numero actual de elementos " + modelo.darTamanoStack() + "\n---------");						
-				break;
-
-			case 3:
 				System.out.println("--------- \nDar OBJECTID a buscar: ");
 				dato = lector.nextInt();
-				respuesta =  modelo.buscarPorIdQueue(dato) + "";
+				respuesta =  modelo.buscarPorId(dato) + "";
 				if ( respuesta != null)
 				{
 					System.out.println("Dato encontrado: "+ respuesta);
@@ -80,47 +77,14 @@ public class Controller {
 				{
 					System.out.println("Dato NO encontrado");
 				}
-				System.out.println("Numero actual de elementos " + modelo.darTamanoQueue() + "\n---------");						
+				System.out.println("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
 				break;
 
-			case 4:
-				System.out.println("--------- \nDar OBJECTID a buscar: ");
-				dato = lector.nextInt();
-				respuesta =  modelo.buscarPorIdStack(dato) + "";
-				if ( respuesta != null)
-				{
-					System.out.println("Dato encontrado: "+ respuesta);
-				}
-				else
-				{
-					System.out.println("Dato NO encontrado");
-				}
-				System.out.println("Numero actual de elementos " + modelo.darTamanoStack() + "\n---------");						
-				break;
-
-			case 5: 
-				view.printMessage("--------- \nContenido del Arreglo: ");
-				view.printModelo(modelo);
-				view.printMessage("Numero actual de elementos " + modelo.darTamanoQueue() + "\n---------");						
-				break;
-
-			case 6: 
-				view.printMessage("--------- \nContenido del Arreglo: ");
-				view.printModelo(modelo);
-				view.printMessage("Numero actual de elementos " + modelo.darTamanoStack() + "\n---------");						
-				break;	
-
-			case 7: 
-				view.printMessage("--------- \n Hasta pronto !! \n---------"); 
-				lector.close();
-				fin = true;
-				break;	
 
 			default: 
-				view.printMessage("--------- \n Opcion Invalida !! \n---------");
+				System.out.println("--------- \n Opcion Invalida !! \n---------");
 				break;
 			}
 		}
-
-	}	
-}
+	}
+}	

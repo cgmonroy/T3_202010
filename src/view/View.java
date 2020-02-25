@@ -1,5 +1,6 @@
 package view;
 
+import model.data_structures.DobleListaEncadenada;
 import model.logic.Modelo;
 
 public class View 
@@ -14,15 +15,9 @@ public class View
 	    
 		public void printMenu()
 		{
-			System.out.println("1. Cargar comparendos en QUEUE");
-			System.out.println("2. Cargar comparendos en STACK");
-			System.out.println("3. Buscar comparendos por OBJECTID (QUEUE)");
-			System.out.println("4. Buscar comparendos por OBJECTID (STACK)");
-			System.out.println("5. Dar Tamanio(QUEUE)");
-			System.out.println("6. Dar Tamanio(STACK)");
+			System.out.println("1. Cargar comparendos");
+			System.out.println("2. Buscar comparendos por OBJECTID");
 			
-			System.out.println("7. Exit");
-			System.out.println("Dar el numero de opcion a resolver, luego oprimir tecla Return: (e.g., 1):");
 		}
 
 		public void printMessage(String mensaje) {
@@ -33,5 +28,7 @@ public class View
 		public void printModelo(Modelo modelo)
 		{
 			// TODO implementar
+			System.out.println(modelo.Lista());
+			
 		}
 }
