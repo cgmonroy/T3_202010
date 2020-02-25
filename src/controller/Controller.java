@@ -12,6 +12,8 @@ import org.json.simple.parser.ParseException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
+
+import model.data_structures.DobleListaEncadenada;
 import model.logic.Comparendos;
 import model.logic.Modelo;
 import view.View;
