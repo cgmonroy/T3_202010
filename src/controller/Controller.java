@@ -64,7 +64,13 @@ public class Controller {
 				modelo.loadComparendos(ruta);
 				System.out.println(modelo);
 				System.out.println("Arreglo Dinamico creado");
-				System.out.println("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
+				System.out.println("Numero actual de elementos " + modelo.darTamano() + "\n---------");	
+				System.out.println("Primer Elemento: " + modelo.retornoPrimero() + "\n---------");		
+				System.out.println("Ultimo Elemento: " + modelo.retornoUltimo() + "\n---------");
+				System.out.println("Tamanio Copia: " + modelo.tamanioCopia()+ "\n---------");
+				System.out.println("TODOS PRUEBA: "+ "\n---------");
+				modelo.primerosYUltimos();
+				
 				break;
 
 			case 2:

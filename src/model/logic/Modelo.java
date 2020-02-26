@@ -23,6 +23,7 @@ public class Modelo {
 
 	private DobleListaEncadenada<Comparendos> listComparendos= new DobleListaEncadenada<>();
 
+
 	/**
 	 * Servicio de consulta de numero de elementos presentes en el modelo 
 	 * @return numero de elementos presentes en el modelo
@@ -86,7 +87,69 @@ public class Modelo {
 		}	
 		return comparendo.getOBJECTID() + " " + comparendo.getFECHA_HORA()+" " + comparendo.getINFRACCION() +" " + comparendo.getCLASE_VEHI() +" " + comparendo.getTIPO_SERVI() + " " + comparendo.getLOCALIDAD();	
 	}
-	
+
+	public Comparable[] copiarComparendos() 
+	{		
+		Comparable<Comparendos>[] arreglos = new Comparendos[listComparendos.getSize()];
+
+		for (int i = 0; i < listComparendos.getSize(); i++) 
+		{
+			arreglos[i] = listComparendos.darElemento(i);
+
+		}
+		return arreglos;
+	}
+
+	public int tamanioCopia()
+	{
+		Comparable<Comparendos>[] arreglos = copiarComparendos();
+
+		return arreglos.length;
+	}
+
+	public String retornoPrimero() {
+		Comparendos comparendo =  listComparendos.darElemento(0);
+		return comparendo.getOBJECTID() + " " + comparendo.getFECHA_HORA()+" " + comparendo.getINFRACCION() +" " + comparendo.getCLASE_VEHI() +" " + comparendo.getTIPO_SERVI() + " " + comparendo.getLOCALIDAD();	
+	}
+
+	public String retornoUltimo() {
+		Comparendos comparendo =  listComparendos.darElemento(listComparendos.getSize()-1);
+		return comparendo.getOBJECTID() + " " + comparendo.getFECHA_HORA()+" " + comparendo.getINFRACCION() +" " + comparendo.getCLASE_VEHI() +" " + comparendo.getTIPO_SERVI() + " " + comparendo.getLOCALIDAD();	
+	}
+
+	public void shellsort(Comparable<Comparendos> a[])
+	{
+		int j;
+		for( int gap = a.length / 2; gap > 0; gap /= 2 )
+		{
+			for( int i = gap; i < a.length; i++ )
+			{
+				Comparable<Comparendos> tmp = a[ i ];
+				for( j = i; j >= gap && tmp.compareTo( (Comparendos) a[ j - gap ] ) < 0; j -= gap )
+				{
+					a[ j ] = a[ j - gap ];
+				}
+				a[ j ] = tmp;
+			}
+		}
+	}
+
+	public void primerosYUltimos()
+	{
+		Comparable<Comparendos>[] arreglos = copiarComparendos();
+
+		shellsort(arreglos);
+		Comparendos comparendo = null;
+		int contador = 0;
+
+		for (int i = 0; i < 10 || i + arreglos.length - 10 < arreglos.length; i++) {
+
+			comparendo = (Comparendos) arreglos[i];
+			contador ++;
+			System.out.println("# de comparendo "+contador+ " " + comparendo.getOBJECTID() + " " + comparendo.getFECHA_HORA()+" " + comparendo.getINFRACCION() +" " + comparendo.getCLASE_VEHI() +" " + comparendo.getTIPO_SERVI() + " " + comparendo.getLOCALIDAD());
+		}
+	}
+
 	public String Lista()
 	{
 		Iterator <Comparendos> iter = listComparendos.iterator();
@@ -99,6 +162,6 @@ public class Modelo {
 			comp = iter.next();	
 		}	
 		return comparendo.getOBJECTID() + " " + comparendo.getFECHA_HORA()+" " + comparendo.getINFRACCION() +" " + comparendo.getCLASE_VEHI() +" " + comparendo.getTIPO_SERVI() + " " + comparendo.getLOCALIDAD();	
-	
+
 	}
 }
