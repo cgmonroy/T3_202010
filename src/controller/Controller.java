@@ -33,7 +33,7 @@ public class Controller {
 
 	private Comparendos comparendo;
 
-	public static final String ruta="./data/comparendos.geojson";
+	public static final String ruta="./data/comparendos_dei_2018.geojson";
 	/**
 	 * Crear la vista y el modelo del proyecto
 	 * @param capacidad tamaNo inicial del arreglo
@@ -48,6 +48,7 @@ public class Controller {
 	public void run() 
 	{
 		Scanner lector = new Scanner(System.in);
+		Comparable<Comparendos>[] arreglos = new Comparendos[listaComparendos.getSize()];
 		boolean fin = false;
 		Integer dato = null;
 		Object datoS = null;
@@ -59,39 +60,56 @@ public class Controller {
 
 			int option = lector.nextInt();
 			switch(option){
-			case 1:
+			case 0:
 				modelo = new Modelo(); 
 				modelo.loadComparendos(ruta);
 				System.out.println(modelo);
-				System.out.println("Arreglo Dinamico creado");
+				System.out.println("Se han cargado los datos");
 				System.out.println("Numero actual de elementos " + modelo.darTamano() + "\n---------");	
 				System.out.println("Primer Elemento: " + modelo.retornoPrimero() + "\n---------");		
 				System.out.println("Ultimo Elemento: " + modelo.retornoUltimo() + "\n---------");
-				System.out.println("Tamanio Copia: " + modelo.tamanioCopia()+ "\n---------");
-				System.out.println("TODOS PRUEBA: "+ "\n---------");
-				modelo.primerosYUltimos();
 				
 				break;
 
-			case 2:
-				System.out.println("--------- \nDar OBJECTID a buscar: ");
-				dato = lector.nextInt();
-				respuesta =  modelo.buscarPorId(dato) + "";
-				if ( respuesta != null)
-				{
-					System.out.println("Dato encontrado: "+ respuesta);
-				}
-				else
-				{
-					System.out.println("Dato NO encontrado");
-				}
-				System.out.println("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
+			case 1:
+				modelo.copiarComparendos();
+				arreglos = modelo.copiarComparendos();
+				System.out.println("Se creo el arreglo copia");
+				System.out.println("Numero de comparendos copia: " + modelo.tamanioCopia());
 				break;
-
-
+				
+			case 2:
+				long tiempoI = System.nanoTime();
+				modelo.shellsort(arreglos);
+				long tiempoF = System.nanoTime();
+				double demora = (tiempoF - tiempoI)/ 1e6;
+				modelo.primerosYUltimos();
+				System.out.println("TIEMPO DEMORA SHELLSORT: "+demora+" Micro Segundos");
+				
+				break;
+			case 3:
+				long tiempoIN = System.nanoTime();
+				modelo.mergesort(arreglos);
+				long tiempoFIN = System.nanoTime();
+				double demoraM = (tiempoFIN - tiempoIN)/ 1e6;
+				modelo.primerosYUltimos();
+				System.out.println("TIEMPO DEMORA MERGESORT: "+demoraM+" Micro Segundos");
+				
+				break;
+				
+			case 4:
+				long tiempoINI = System.nanoTime();
+				modelo.quickSort(arreglos);
+				long tiempoFINAL = System.nanoTime();
+				double demoraMI = (tiempoFINAL - tiempoINI)/ 1e6;
+				modelo.primerosYUltimos();
+				System.out.println("TIEMPO DEMORA QUICKSORT: "+demoraMI+" Micro Segundos");
+				
+				break;
 			default: 
 				System.out.println("--------- \n Opcion Invalida !! \n---------");
 				break;
+			
 			}
 		}
 	}

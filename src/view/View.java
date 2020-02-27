@@ -15,9 +15,12 @@ public class View
 	    
 		public void printMenu()
 		{
-			System.out.println("1. Cargar comparendos");
-			System.out.println("2. Buscar comparendos por OBJECTID");
-			
+			System.out.println("0. Carga de datos.");
+			System.out.println("1. Crear arreglo de copia.");
+			System.out.println("2. Ordenamiento ShellSort.");
+			System.out.println("3. Ordenamiento MergeSort.");
+			System.out.println("4. Ordenamiento QuickSort.");
+
 		}
 
 		public void printMessage(String mensaje) {
