@@ -33,7 +33,7 @@ public class Controller {
 
 	private Comparendos comparendo;
 
-	public static final String ruta="./data/comparendos_dei_2018.geojson";
+	public static final String ruta="./data/comparendos.geojson";
 	/**
 	 * Crear la vista y el modelo del proyecto
 	 * @param capacidad tamaNo inicial del arreglo

@@ -54,7 +54,6 @@ public class Modelo {
 				Comparendos comparendo = new Comparendos(String.valueOf(comp.get("type")), Integer.parseInt(String.valueOf(properties.get("OBJECTID"))), String.valueOf(properties.get("FECHA_HORA")), String.valueOf(properties.get("CLASE_VEHI")), String.valueOf(properties.get("TIPO_SERVI")), String.valueOf(properties.get("INFRACCION")), String.valueOf(properties.get("DES_INFRAC")), String.valueOf(properties.get("LOCALIDAD")), String.valueOf(geometry.get("type")), String.valueOf(coordinates));
 
 				listComparendos.agregarAlFinal(comparendo);
-				System.out.println(comparendo.getOBJECTID());
 			}
 
 		} catch (FileNotFoundException e) {
