@@ -163,7 +163,7 @@ public class Modelo {
 			items[i] = temp[i];
 		}
 	}
-	
+
 	public void mergesort(Comparable<Comparendos> items[]) 
 	{
 		quickSort (items, 0, items.length-1);
@@ -173,8 +173,8 @@ public class Modelo {
 	 * pre: start > 0, end > 0
 	 * post: items[start..end] is sorted low to high
 	 */
-	
-	
+
+
 	private void mergesort(Comparable<Comparendos> items[], int start, int end) 
 	{
 		if (start < end) {
@@ -203,14 +203,14 @@ public class Modelo {
 			}
 		}
 	}
-	
+
 	public void quickSort (Comparable<Comparendos> A[])
 
 	{	
 		quickSort (A, 0, A.length-1);
-		
+
 	}
-	
+
 	private void quickSort (Comparable<Comparendos> A[], int low, int high)
 
 	{
@@ -229,7 +229,7 @@ public class Modelo {
 		A[index1] = A[index2];
 		A[index2] = temp;
 	}
-	
+
 	private int getPivot (int low, int high)
 	{
 		Random rand = new Random();
@@ -251,7 +251,7 @@ public class Modelo {
 		swap (A, low, border-1);
 		return border-1;
 	}
-	
+
 	public String Lista()
 	{
 		Iterator <Comparendos> iter = listComparendos.iterator();
